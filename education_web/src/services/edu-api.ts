@@ -25,13 +25,20 @@ export interface UserAttrsParams {
 const APP_ID: string = process.env.REACT_APP_AGORA_APP_ID as string;
 const PREFIX: string = process.env.REACT_APP_AGORA_EDU_ENDPOINT_PREFIX as string;
 const AUTHORIZATION: string = process.env.REACT_APP_AGORA_RESTFULL_TOKEN as string;
+//Added by zhw in 2020-06-05
+const CUSTOMID: string = process.env.REACT_APP_AGORA_CUSTOMER_ID as string;
+const CUSTOMCERTIFICATE: string = process.env.REACT_APP_AGORA_CUSTOMER_CERTIFICATE as string;
 
 const AgoraFetchJson = async ({url, method, data, token, full_url}:{url?: string, method: string, data?: any, token?: string, full_url?: string}) => {  
+//需要修改authorization，否则报401错 by zhw in 2020-06-05
+  let base64Credentials = btoa(CUSTOMID + ':' + CUSTOMCERTIFICATE);
+
   const opts: any = {
     method,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Basic ${AUTHORIZATION!.replace(/basic\s+|basic/i, '')}`
+      //'Authorization': `Basic ${AUTHORIZATION!.replace(/basic\s+|basic/i, '')}`
+      'Authorization': `Basic ${base64Credentials!.replace(/basic\s+|basic/i, '')}`
     }
   }
 
