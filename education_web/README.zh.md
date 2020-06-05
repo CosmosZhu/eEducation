@@ -44,7 +44,8 @@
    ```
    - **（必填）声网 HTTP basic 认证 Authorization 字段**
    ```
-   # 声网 HTTP basic 认证 Authorization 字段
+   # 声网 HTTP basic 认证 Authorization 字段。
+   #下列常量名有误导之嫌，restful请求authorization配置见鉴权部分  by zhw in 2020-06-05
    REACT_APP_AGORA_RESTFULL_TOKEN=agora_restful_api_token
    ```
    - **（选填）适用于白板课件服务，如不需要可以直接按照下列配置**
@@ -62,6 +63,17 @@
    # 你自己的 OSS bucket access endpoint
    REACT_APP_YOUR_OWN_OSS_CDN_ACCELERATE=your_cdn_accelerate_endpoint
    ```
+   - **（必填）用于鉴权，经base64编码后用于restful api 请求的header部分**。否则demo启动后进入频道（教室）时报401错误
+   
+     ```
+     # 声网开发者 Customer ID
+     REACT_APP_AGORA_CUSTOMER_ID=customer_id
+     # 声网开发者 Customer Certificate
+     REACT_APP_AGORA_CUSTOMER_CERTIFICATE=customer_certificate
+     ```
+
+     
+   
    - **（选填）用于 RTM 前端回放展示能力，不推荐生产上直接使用。如不需要可以直接按照下列配置**
    ```
    # 声网开发者 Customer ID
@@ -71,7 +83,7 @@
    # 声网开发者 rtm restful api 接口，仅供demo展示（请在自己的服务端接入）
    REACT_APP_AGORA_RTM_ENDPOINT=your_server_rtm_endpoint_api
    ```
-
+   
 - 中国区客户推荐使用以下方式安装 npm 依赖包和 electron & node-sass 加速
   > 我们建议使用 npm 而非 yarn 或 cnpm
   ```
